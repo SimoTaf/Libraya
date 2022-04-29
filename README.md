@@ -1,4 +1,4 @@
-# Libraya
+# Libraya (is a library management system)
 First you need to setup your database system (we use here postgres)then:
 Create a user :
 sudo -u postgres createuser -P username  //   create a user(username) and give it a password
