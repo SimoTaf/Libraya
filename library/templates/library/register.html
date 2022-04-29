@@ -1,0 +1,63 @@
+{% extends 'library/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+
+<a href="{% url 'library:student-list' %}" class="btn btn-dark" style="margin-top: 15px;margin-left: 15px;">Back</a>
+<div id="sign_in">
+    
+<div id="cont">
+    <form method="POST" enctype="multipart/form-data" action="">
+        {%csrf_token%}
+        
+        <div class="form-outline mb-4">
+        {{form.email | add_class:"form-control"}} 
+        <label class="form-label">{{form.email.label}}</label>
+        </div>
+        
+        <div class="form-outline mb-4">
+        {{form.name | add_class:"form-control"}} 
+        <label class="form-label">{{form.name.label}} </label>
+        </div>
+        
+        <div class="form-outline mb-4">
+        {{form.username | add_class:"form-control"}} 
+        <label class="form-label">{{form.username.label}} </label>
+        </div>
+
+        <div class="form-outline mb-4">
+        {{form.enrollment_no | add_class:"form-control"}} 
+        <label class="form-label">{{form.enrollment_no.label}}</label>
+        </div>
+
+
+        <div class="form-outline mb-4">
+        {{form.password1 | add_class:"form-control"}} 
+        <label class="form-label" >{{form.password1.label}}</label> 
+        </div>
+
+        <div class="form-outline mb-4">
+        {{form.password2 | add_class:"form-control"}}
+        <label class="form-label">{{form.password2.label}}</label> 
+        </div>
+
+        <div  >
+        <label class="form-label">Student's picture</label>
+        {{form.pic | add_class:"form-control"}}
+        
+        
+        </div>
+        <br>
+        
+        <label> <input class="btn btn-dark" type="submit" value="Submit"></label>
+        
+        
+        </form>
+    </div>   
+</div>
+
+
+
+
+{% endblock content %}
+

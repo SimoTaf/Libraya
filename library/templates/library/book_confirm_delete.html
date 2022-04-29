@@ -1,0 +1,21 @@
+
+{% extends 'library/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<a href="{% url 'library:book-list' %}" class="btn btn-dark" style="margin-top: 15px;margin-left: 15px;">Back</a>
+
+
+<div id="sign_in" >
+    <div id="cont">
+    <form method = "POST">
+        {%csrf_token%}
+        <p class="form-label">Are you sure you want to delete the book '{{book|title}}'?</p>
+        <label> <input class="btn btn-dark" type="submit" value="Confirm"></label>
+        </form>
+    </div>
+</div>
+
+
+
+{% endblock content %}

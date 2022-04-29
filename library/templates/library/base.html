@@ -1,0 +1,298 @@
+{% load static%}
+<!doctype html>
+<html lang="en">
+  <head>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Libraya</title>
+     
+    <link rel="icon" href="{% static 'style/img/book.png' %}" type="image/x-icon" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- Google Fonts Roboto -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+    />
+    <!-- MDB -->
+    <link rel="stylesheet" href="{% static 'style/css/mdb.min.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aleo&family=Andada+Pro&family=Finger+Paint&family=Kadwa&family=Orienta&family=Vesper+Libre:wght@500&display=swap" rel="stylesheet">
+  
+  <style>
+    body::-webkit-scrollbar {
+  width: 6px;               /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: rgb(216, 216, 216);        /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgb(182, 182, 182);    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 1px solid rgb(124, 121, 121);  /* creates padding around scroll thumb */
+}
+
+  
+    
+    #override{
+      margin: 0px;
+      padding: 0px;
+      background-image: url("{% static 'style/img/library.jpg' %}") ; 
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      font-family: 'Orienta', sans-serif;
+    }
+    
+    #footer_test{
+      margin: 0px;
+      padding: 0px;
+      
+
+    }
+    #f_test{
+      min-height: 100vh;
+    }
+    #grid_test{
+      height: 80px;
+      
+    }
+    #book_card{
+      width: auto;
+      height: 350px;
+      filter: grayscale();
+    }
+    #book_card:hover{
+      filter: none;
+
+    }
+    #book_card2{
+      width: 100%;
+      height: 275px;
+    }
+    
+    #profile_img{
+      height: 250px;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+    }
+    #card{
+      width: 30%;
+      border-radius: 15px;
+      margin: auto; 
+      margin-top: 15px; 
+      padding: 0px;  }
+    #book_detail{
+      margin: auto;
+      margin-top: 15px;
+      padding: 0px; 
+      width: 35%;
+      height: 275px;
+    }
+    #sign_in{
+      width: 30%;
+      margin: auto;
+      margin-top: 15px;
+    }
+    #cont{
+      margin: 0px;
+      padding: 15px;
+      border-radius: 10px;
+      background-color:white;
+    }
+    #tab{
+
+      width: 90%;
+      margin: auto;
+      margin-top: 15px;
+      
+    }
+  </style>
+  </head>
+  <body id="override" class="container-fluid ">
+    <!-- Image and text -->
+
+    
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+        <div class="container-fluid">
+           
+          <a class="navbar-brand" href="{% url 'library:home' %}">
+            <img
+              src="{% static 'style/img/book.png' %}"
+              class="me-2"
+              height="20"
+              alt="MDB Logo"
+              loading="lazy"
+            />
+            <small><b>Libraya</b></small>
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              {% if request.user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'library:home' %}">Home</a>
+              </li>
+
+
+              
+              
+                {% if request.user.is_superuser or request.user.is_admin %}
+              <li class="nav-item dropdown">
+                <a class="nav-link btn-light dropdown-toggle"
+                type="button"
+                id="dropdownMenuLink"
+                data-mdb-toggle="dropdown"
+                aria-expanded="false">
+                  Students
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="{% url 'library:student-list' %}">Students List</a></li>
+                  <li><a class="dropdown-item" href="{% url 'library:student-create'%}">Add Student</a></li>
+                 
+                </ul>
+              </li>
+              {% endif %}
+              <li class="nav-item dropdown">
+                <a class="nav-link btn-light dropdown-toggle"
+                type="button"
+                id="dropdownMenuLink"
+                data-mdb-toggle="dropdown"
+                aria-expanded="false">
+                  Books
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="{% url 'library:book-list' %}">Books List</a></li>
+                  {% if request.user.is_superuser or request.user.is_admin %}
+                  <li><a class="dropdown-item" href="{% url 'library:book-create' %}">Add New Book</a></li>
+ 
+                 {% endif %}
+                  
+                 
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link btn-light dropdown-toggle"
+                type="button"
+                id="dropdownMenuLink"
+                data-mdb-toggle="dropdown"
+                aria-expanded="false">
+                  Profile
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="{% url 'library:student-detail' request.user.id%}">View Profile</a></li>
+                  <li><a class="dropdown-item" href="{%url 'library:logout'%}">Logout</a></li>
+                 
+                </ul>
+              </li>
+              {% endif %}
+            </ul>
+            {% if request.user.is_authenticated %}
+            <form  method="GET" class="d-flex">
+              <input class="form-control me-2" type="text" placeholder="Book's name" name="search-area" aria-label="Search" value="{{search_input}}">
+              <button class="btn btn-dark" type="submit">Search</button>
+            </form>
+            {% endif %}
+          </div>
+        </div>
+      </nav>
+<div  style="overflow: auto;" id="f_test">
+{% block content %}  {% endblock content %}</div>
+
+<br>
+
+<footer class="text-center text-white bottom" style="background-color: #f1f1f1;" id="footer_test">
+  <!-- Grid container -->
+  <div class="container pt-4" id="grid_test">
+    <!-- Section: Social media -->
+    <section class="mb-4">
+      <!-- Facebook -->
+      <a
+        class="btn btn-link btn-floating btn-lg text-dark m-1"
+        href="https://web.facebook.com/zcei000"
+        role="button"
+        data-mdb-ripple-color="dark"
+        target="_blank"
+        ><i class="fab fa-facebook-f"></i
+      ></a>
+
+      <!-- Twitter -->
+      <a
+        class="btn btn-link btn-floating btn-lg text-dark m-1"
+        href="#!"
+        role="button"
+        data-mdb-ripple-color="dark"
+        
+        ><i class="fab fa-twitter"></i
+      ></a>
+
+      <!-- Google -->
+      <a
+        class="btn btn-link btn-floating btn-lg text-dark m-1"
+        href="#!"
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><i class="fab fa-google"></i
+      ></a>
+
+      <!-- Instagram -->
+      <a
+        class="btn btn-link btn-floating btn-lg text-dark m-1"
+        href="#!"
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><i class="fab fa-instagram"></i
+      ></a>
+
+      <!-- Linkedin -->
+      <a
+        class="btn btn-link btn-floating btn-lg text-dark m-1"
+        href="https://www.linkedin.com/in/chahbi-zineddine-4a76b2191/"
+        role="button"
+        data-mdb-ripple-color="dark"
+        target="_blank"
+        ><i class="fab fa-linkedin"></i
+      ></a>
+      <!-- Github -->
+      <a
+        class="btn btn-link btn-floating btn-lg text-dark m-1"
+        href="https://github.com/ZexDev007"
+        role="button"
+        data-mdb-ripple-color="dark"
+        target="_blank"
+        ><i class="fab fa-github"></i
+      ></a>
+    </section>
+    <!-- Section: Social media -->
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    Copyright © 2022 
+    <a class="text-dark" href="#">by Zineddine</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+
+    <!-- MDB -->
+    <script type="text/javascript" src="{% static 'style/js/mdb.min.js' %}"></script>
+    <!-- Custom scripts -->
+    <script type="text/javascript"></script>   
+    
+    
+  </body>
+</html>

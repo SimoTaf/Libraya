@@ -1,0 +1,31 @@
+{% extends 'library/base.html' %} {% block content %}
+
+
+<div class="row" style="margin: auto;">
+
+{% for book in books %}
+<div class="card profile" id="card">
+  {% if book.pic %}
+  <img src="{{book.pic.url}}" class="card-img-top" alt="Fissure in Sandstone" id="book_card"/>
+  {% else %}
+  <img src="/static/avatar/open-book-clipart-03.jpg" class="card-img-top" id="book_card" alt="Fissure in Sandstone"/>
+  {% endif %}
+  <div class="card-body">
+    <h5 class="card-title">{{book.title}}</h5>
+    <p class="card-text">{{book.summary}}</p>
+    <br><br>
+    <a href="{% url 'library:book' book.id %}" class="btn btn-dark"  >View Details</a>
+  </div>
+</div>
+
+
+
+{% endfor %}
+
+
+</div>
+
+{% endblock content %}
+
+
+

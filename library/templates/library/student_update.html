@@ -1,0 +1,36 @@
+{% extends 'library/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<a href="{% url 'library:student-list' %}" class="btn btn-dark" style="margin-top: 15px;margin-left: 15px;">Back</a>
+<div id="sign_in" >
+<div id="cont">
+    <form method="POST" enctype="multipart/form-data">
+        {%csrf_token%}
+        
+        {% for field in form %}
+        <br>
+        <div class="">
+        {{ field | add_class:"form-control"}}
+        <label  class="form-label">{{ field.label }}</label>
+        
+        
+        </div>
+        {% for error in field.errors %}
+        <span class="help-block">{{ error }}</span>
+        {% endfor %}
+        
+        {% endfor %}
+
+        <label> <input class="btn btn-dark" type="submit" value="Update"></label>
+        
+        
+        </form>
+    </div>
+</div>
+
+
+
+
+{% endblock content %}
+

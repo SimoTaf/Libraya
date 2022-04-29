@@ -1,0 +1,68 @@
+{% extends 'library/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+
+<a href="{% url 'library:book-list' %}" class="btn btn-dark" style="margin-top: 15px;margin-left: 15px;">Back</a>
+
+<div id="sign_in" >
+<div id="cont">
+    <form method="POST" enctype="multipart/form-data"action="">
+    {%csrf_token%}
+    
+    <div class="form-outline mb-4">
+    {{form.title | add_class:"form-control"}} 
+    <label class="form-label" >{{form.title.label}} </label>
+    </div>
+    
+    <div class="form-outline mb-4">
+    {{form.author | add_class:"form-control"}} 
+    <label class="form-label">{{form.author.label}} </label>
+</div>
+
+    <div class="form-outline mb-4">
+    {{form.summary | add_class:"form-control"}}
+    <label class="form-label" >{{form.summary.label}} </label>
+</div>
+
+    <div class="form-outline mb-4">
+    {{form.isbn | add_class:"form-control"}} 
+    <label class="form-label">{{form.isbn.label}} </label>
+</div>
+
+    
+    <label class="select-label">{{form.genre.label}}</label>
+    {{form.genre | add_class:"form-select    "| attr:"size=2"}} 
+     
+    <br>
+
+    
+        <label class="select-label">{{form.language.label}} </label>
+    {{form.language | add_class:"form-select"}}
+    
+    <br>
+
+    <div class="form-outline mb-4">
+    {{form.total_copies | add_class:"form-control"}}
+    <label class="form-label">{{form.total_copies.label}}</label> 
+</div>
+
+    <div class="form-outline mb-4">
+    {{form.available_copies | add_class:"form-control"}}
+    <label class="form-label">{{form.available_copies.label}}</label> 
+</div>
+
+
+    <label class="form-label" >{{form.pic.label}}</label> 
+    {{form.pic | add_class:"form-control"}}
+    <br>
+
+    <label> <input class="btn btn-dark" type="submit" value="Submit"></label>
+    
+    </form>
+</div>
+</div>
+
+
+
+{% endblock content %}

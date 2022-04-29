@@ -1,0 +1,40 @@
+{% extends 'library/base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+
+<div id="sign_in" >
+<div id="cont">
+<h1 style="text-align: center;">Login</h1>
+    <form method="post">
+        {% csrf_token %}
+        
+
+        {% for field in form %}
+        
+        <div class="form-outline mb-4">
+        {{ field | add_class:"form-control"}}
+        <label  class="form-label">{{ field.label }}</label>
+        
+        </div>
+        {% for error in field.errors %}
+        <span class="help-block">{{ error }}</span>
+        {% endfor %}
+        
+        {% endfor %}
+        
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-dark btn-block">Sign in</button>
+        
+        
+        
+      </form>
+        <br>
+ 
+</div>
+</div>
+
+
+
+{% endblock content %}

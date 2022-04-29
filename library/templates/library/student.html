@@ -1,0 +1,24 @@
+{% extends 'library/base.html' %}
+{% block content %}
+
+<div class="card profile" id="card">
+    {% if student.pic %}
+    <img src="{{student.pic.url}}" class="card-img-top" alt="Fissure in Sandstone" id="profile_img"/>
+    {% else %}
+    <img src="/static/avatar/images.jpg" class="card-img-top" alt="Fissure in Sandstone" id="profile_img"/>
+    {% endif %}
+    <div class="card-body">
+      <h5 class="card-title">{{student.name|title}}</h5>
+      <p class="card-text">Enrollment No: {{student.enrollment_no}}</p>
+      <small class="text-muted" style="display: block;">Date Joined: {{student.date_joined}}</small><br><br>
+      <a href="{% url 'library:student-update' student.id%}" class="btn btn-dark"  >Edit</a>
+    </div>
+  </div>
+
+{% endblock content %}
+
+
+
+
+
+
